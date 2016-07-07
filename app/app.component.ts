@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
+import { WorkoutsComponent } from './workout/workouts.component';
 
 @Component({
+    moduleId: module.id,
     selector: 'my-app',
-    templateUrl: 'app/app.component.html' 
+    templateUrl: 'app.component.html',
+    directives: [WorkoutsComponent]
 })
 export class AppComponent {
+
     title = "Workout App";
     name = "Scott";
-    scottsColor = 'blue';
+    scottsColor = 'green';
 
     changeSuitColor() {
-        this.scottsColor =  this.scottsColor === 'blue' ? 'red' : 'blue';
+        this.scottsColor =  this.scottsColor === 'green' ? 'red' : 'green';
     }
  }
