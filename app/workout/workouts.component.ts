@@ -13,13 +13,19 @@ import { WorkoutService } from './workout.service';
     providers: [WorkoutService]
 })
 export class WorkoutsComponent implements OnInit {
-    workouts: Observable<any[]>;
+    workouts: any[];
 
     constructor(private _workoutService: WorkoutService) { 
     }
 
     ngOnInit() { 
-        this.workouts = this._workoutService.getWorkouts();
+        this._workoutService.getWorkouts()
+            .then((workouts) => {
+                this.workouts = workouts;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
 }

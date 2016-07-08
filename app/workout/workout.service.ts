@@ -11,7 +11,23 @@ export class WorkoutService {
 
     getWorkouts() {
         return this._http.get(URL_WORKOUT)
-            .map((response: Response) => response.json());
+            .map((response: Response) => response.json())
+            .toPromise()
+            .catch((err: any) => {
+                console.log(err);
+                return Promise.reject(err);
+            });
+    }
+
+    getWorkouts_RxObservable() {
+        return this._http.get(URL_WORKOUT)
+            .map((response: Response) => response.json())
+            .catch(this._handleError);
+    }
+
+    _handleError(err: any) {
+        console.log(err);
+        return Observable.throw(err);
     }
 
 }
