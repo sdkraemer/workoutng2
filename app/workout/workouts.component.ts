@@ -19,13 +19,21 @@ export class WorkoutsComponent implements OnInit {
     }
 
     ngOnInit() { 
-        this._workoutService.getWorkouts()
-            .then((workouts) => {
+        this._workoutService.getWorkouts_RxObservable()
+            .subscribe((workouts) => {
                 this.workouts = workouts;
-            })
-            .catch((err) => {
+            },
+            (err) => {
                 console.log(err);
             });
+
+        // this._workoutService.getWorkouts()
+        //     .then((workouts) => {
+        //         this.workouts = workouts;
+        //     })
+        //     .catch((err) => {
+        //         console.log(err);
+        //     });
     }
 
 }
