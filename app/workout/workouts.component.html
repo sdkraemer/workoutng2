@@ -1,5 +1,5 @@
 <ul>
-    <li *ngFor="let workout of workouts">
+    <li *ngFor="let workout of workouts | async">
         <app-workout [workout]="workout"></app-workout>
     </li>
 </ul>

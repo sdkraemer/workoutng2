@@ -1,18 +1,17 @@
 
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
+//import 'rxjs/add/operators/map';
+import { Observable } from 'rxjs/Rx';
 
+const URL_WORKOUT = 'app/workouts.json';
 @Injectable()
 export class WorkoutService {
-    constructor() { }
+    constructor(private _http: Http) { }
 
     getWorkouts() {
-        return [
-            {id: 1, description: "First workout"},
-            {id: 2, description: "Went for a run, 2.12 miles."},
-            {id: 3, description: "Went for a run, 2.5 miles"},
-            {id: 4, description: "P90X3 Total Synergistics"},
-            {id: 5, description: "Hiked Tumamoc"},
-        ];
+        return this._http.get(URL_WORKOUT)
+            .map((response: Response) => response.json());
     }
 
 }
